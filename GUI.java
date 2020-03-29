@@ -1,16 +1,32 @@
 package Finance;
 
+import com.sun.corba.se.impl.ior.EncapsulationUtility;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextArea;
+
 /**
  *
- * @author minh, Luc, 
+ * @author minh, Luc,
  */
 public class GUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GUI
-     */
+    GUIController controller;
+    BufferedOutputStream textOutput;
+
     public GUI() {
+        // new BufferedOutputStream();
+
         initComponents();
+        PrintStream printStream = new PrintStream(new CustomOutputStream(jTextArea1));
+        controller = new GUIController(printStream);
     }
 
     /**
@@ -95,7 +111,18 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            String typedText = jTextArea2.getText();
+            BufferedInputStream newInput;
+            newInput = new BufferedInputStream(new ByteArrayInputStream(typedText.getBytes("UTF-8")));
+            controller.checkInput(newInput);
+            jTextArea2.setText("");
+            writeOutstream();
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -131,6 +158,27 @@ public class GUI extends javax.swing.JFrame {
                 new GUI().setVisible(true);
             }
         });
+    }
+
+    private void writeOutstream() {
+
+    }
+
+    class CustomOutputStream extends OutputStream {
+
+        private JTextArea textArea;
+
+        public CustomOutputStream(JTextArea textArea) {
+            this.textArea = textArea;
+        }
+
+        @Override
+        public void write(int b) throws IOException {
+            // redirects data to the text area
+            textArea.append(String.valueOf((char) b));
+            // scrolls the text area to the end of data
+            textArea.setCaretPosition(textArea.getDocument().getLength());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
