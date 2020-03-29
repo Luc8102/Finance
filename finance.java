@@ -1,15 +1,17 @@
 package Finance;
 
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.util.Scanner;
 
 public class finance
 {
-  public void qna()
+  public void qna(BufferedInputStream input, BufferedOutputStream output)
   {
     float total=0;
     float weekly=0;
-    Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(input);
     System.out.println("What is your expected annual expendenture for the years after retirement?");
     float retirementSpending = scan.nextFloat();
     System.out.println("How much do you intend on spending each year before retirement?");
