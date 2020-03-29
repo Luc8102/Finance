@@ -4,9 +4,11 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextArea;
@@ -25,6 +27,7 @@ public class GUI extends javax.swing.JFrame {
 
         initComponents();
         PrintStream printStream = new PrintStream(new CustomOutputStream(jTextArea1));
+        System.setOut(new PrintStream(printStream));
         controller = new GUIController(printStream);
         
         
@@ -126,14 +129,14 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Send Button Clicked
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             String typedText = jTextArea2.getText();
             BufferedInputStream newInput;
             newInput = new BufferedInputStream(new ByteArrayInputStream(typedText.getBytes("UTF-8")));
-            controller.checkInput(newInput);
+            checkInput(newInput);
             jTextArea2.setText("");
-            writeOutstream();
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -176,10 +179,20 @@ public class GUI extends javax.swing.JFrame {
         });
     }
 
-    private void writeOutstream() {
-
+     public void checkInput(InputStream input) throws IOException {
+        Scanner sc = new Scanner(input);
+        String text = "";
+        while (sc.hasNext()) {
+            text = sc.next();
+            writeOutput(text);
+        }
     }
 
+    public void writeOutput(String text) throws UnsupportedEncodingException, IOException {
+        System.out.println(text);
+    }
+    
+    
     class CustomOutputStream extends OutputStream {
 
         private JTextArea textArea;
