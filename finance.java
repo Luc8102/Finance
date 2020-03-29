@@ -135,14 +135,31 @@ public class Finance
    {
       char[] charray = s.toCharArray();
       String store = "";
+      int start = s.indexOf(": ") + 2;
+      int end = s.length() - 1;
+      char c;
         
       for(int i = 0; i < charray.length; i++)
       {
-         char c = charray[i];
+         c = charray[i];
          if(Character.isDigit(c))
-            store += c;
+         {
+            start = i;
+            break;
+         } //ends if
       } //ends for
-        
+      
+      for(int i = charray.length - 1; i >= 0; i++)
+      {
+         c = charray[i];
+         if(Character.isDigit(c))
+         {
+            end = i;
+            break;
+         } //ends if
+      } //ends for
+   
+      store = s.substring(start, end + 1);                
       return(Float.parseFloat(store));
    } //ends getValue
 } //ends class
