@@ -19,7 +19,7 @@ import javax.swing.JTextArea;
  */
 public class GUI extends javax.swing.JFrame {
 
-    GUIController controller;
+   // GUIController controller;
     BufferedOutputStream textOutput;
 
     public GUI() {
@@ -28,7 +28,7 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         PrintStream printStream = new PrintStream(new CustomOutputStream(jTextArea1));
         System.setOut(new PrintStream(printStream));
-        controller = new GUIController(printStream);
+       // controller = new GUIController(printStream);
         
         
         
