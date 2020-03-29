@@ -1,6 +1,3 @@
-package Finance;
-
-
 import java.util.Scanner;
 
 public class finance
@@ -55,19 +52,9 @@ public class finance
   //below is the calculation to find how much money the user will have at age 65
   public float retirement(float retirementSpending, float income, float retirementSavings, byte age, float expenses)
   {
- //   this.retirementSpending;
- //   this.income;
- //   this.retirementSavings;
- //   this.age;
-  //  this.expenses;
-  //  this.retirementSavingsYears;
-    
     byte yearsLeft=67-age;
     float moneyAt67=retirementSavings+(yearsLeft*(income-expenses));
     float youHave_YearsAfterRetirement=moneyAt67/retirementSpending;
-    //returns amount of money at age 65.  the next step is to use the question i asked before "What is your expected annual expendenture at retirement?"
-    //in order to calculate how many years this person has of spending
-    //I think i have a good start.  if you could please finish it, that would be great im getting tired.
     return youHave_YearsAfterRetirement67;
   }
   public boolean goalmet(weeklyspending, expenses)
