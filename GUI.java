@@ -20,13 +20,17 @@ import javax.swing.JTextArea;
 public class GUI extends javax.swing.JFrame {
 
     BufferedOutputStream textOutput;
+    Finance finance;
 
     public GUI() {
-
+        finance = new Finance();
         initComponents();
         PrintStream printStream = new PrintStream(new CustomOutputStream(jTextArea1));
         System.setOut(new PrintStream(printStream));
+        beginPrompt();
 
+        //  System.setIn(new CustomInputStream(jTextArea2));
+        // checkInputStream();
         //(new finance()).qna();
     }
 
@@ -175,16 +179,68 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void checkInput(InputStream input) throws IOException {
+        InputStream oldInputStream = System.in;
+        System.setIn(input);
         Scanner sc = new Scanner(input);
         String text = "";
         while (sc.hasNext()) {
             text = sc.next();
             writeOutput(text);
         }
+        System.setIn(oldInputStream);
     }
 
     public void writeOutput(String text) throws UnsupportedEncodingException, IOException {
         System.out.println(text);
+    }
+
+    private void beginPrompt() {
+        float total;
+        float weekly;
+        float retirementSpending;
+        float expenses;
+        float retirementSavings;
+        float income;
+        byte age;
+
+        total = 0;
+        weekly = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("What is your expected annual expendenture for the years after retirement?");
+       /*
+               retirementSpending = finance.value(scan.nextLine());
+        finance.writer("retirementSpending: " + retirementSpending);
+        System.out.println("How much do you intend on spending each year before retirement?");
+        expenses = finance.value(scan.nextLine());
+        finance.writer("expenses: " + expenses);
+        System.out.println("How much have you saved for retirement?");
+        retirementSavings = finance.value(scan.nextLine());
+        finance.writer("retirementSavings: " + retirementSavings);
+        System.out.println("For tax purposes, what is your yearly income?");
+        income = finance.value(scan.nextLine());
+        finance.incomeMod();
+        finance.writer("income: " + income);
+        System.out.println("What is your age?");
+        age = (byte) (finance.value(scan.nextLine()));
+        finance.writer("age: " + age);
+*/
+
+    }
+
+    class CustomInputStream extends InputStream {
+
+        private JTextArea textArea;
+
+        public CustomInputStream(JTextArea textArea) {
+            this.textArea = textArea;
+        }
+
+        @Override
+        public int read() throws IOException {
+            textArea.getText();
+            return 0;
+        }
+
     }
 
     class CustomOutputStream extends OutputStream {

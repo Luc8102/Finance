@@ -15,6 +15,7 @@ public class Finance
     
    public Finance()
    {
+       /*
       total = 0;
       weekly = 0;
       Scanner scan = new Scanner(System.in);
@@ -34,6 +35,7 @@ public class Finance
       System.out.println("What is your age?");
       byte age = (byte)(value(scan.nextLine()));
       writer("age: " + age);
+*/
    } //ends default constructor
     
    public Finance(String filename)
