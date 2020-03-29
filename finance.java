@@ -62,9 +62,10 @@ public class finance
   //  this.expenses;
   //  this.retirementSavingsYears;
     
-    byte yearsLeft=67-age;
+    byte yearsLeft=(byte) (67-age);
     float moneyAt67=retirementSavings+(yearsLeft*(income-expenses));
     float youHave_YearsAfterRetirement=moneyAt67/retirementSpending;
+      float youHave_YearsAfterRetirement67 = 0;
     //returns amount of money at age 65.  the next step is to use the question i asked before "What is your expected annual expendenture at retirement?"
     //in order to calculate how many years this person has of spending
     //I think i have a good start.  if you could please finish it, that would be great im getting tired.
