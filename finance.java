@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class finance
 {
-  public static void main(String[] args)
+  public void qna()
   {
     float total=0;
     float weekly=0;
@@ -13,6 +13,8 @@ public class finance
     float expenses = scan.nextFloat();
     System.out.println("How much have you saved for retirement?");
     float retirementSavings = scan.nextFloat();
+    System.out.println("How much do you intened on saving each year for retirement?");
+    float retirementSavingsYears = scan.nextFloat();
     System.out.println("For tax purposes, what is your yearly income?");
     float income = scan.nextFloat();
     if(income<9700)
@@ -44,7 +46,7 @@ public class finance
       income-=(income*0.37);
     }
     System.out.println("What is your age?");
-    byte income = scan.nextByte();
+    byte age = scan.nextByte();
  //Everything before this line are preliminary questions to ask the user in order to calculate everything else.
  //below is a loop that was initally supposed to take the spending of every day and make a weekly report, but this may be misplaced
     for(short i=0;i<365;i++)
@@ -55,25 +57,27 @@ public class finance
       weekly+=today;
       if(i%7==0)
       {
-        System.out.println("-------Weekly report\n You spent $" + weekly + " This week. Save "For retiurement " every week to retire at" _____"at $"+retirementSpending+"per year!")
+        System.out.println("-------Weekly report\n You spent $" + weekly + " This week. You'll have $" +youHave_YearsAfterRetirement67+ " years of savings at $"+retirementSpending+"per year of you retire at 67!");
         weekly = 0;
       }
     }
   }
   //below is the calculation to find how much money the user will have at age 65
-  public float retirement(float retirementSpending, float income, float retirementSavings, byte age, float expenses)
+  public float retirement(float retirementSpending, float income, float retirementSavings, byte age, float expenses, float retirementSavingsYears)
   {
-    this.retirementSpending;
-    this.income;
-    this.retirementSavings;
-    this.age;
-    this.expenses;
+ //   this.retirementSpending;
+ //   this.income;
+ //   this.retirementSavings;
+ //   this.age;
+  //  this.expenses;
+  //  this.retirementSavingsYears;
     
-    yearsLeft=67-age;
-    moneyAt67=retirementSavings+(yearsLeft*(income-expenses));
+    byte yearsLeft=67-age;
+    float moneyAt67=retirementSavings+(yearsLeft*(income-expenses));
+    float youHave_YearsAfterRetirement=moneyAt67/retirementSpending;
     //returns amount of money at age 65.  the next step is to use the question i asked before "What is your expected annual expendenture at retirement?"
     //in order to calculate how many years this person has of spending
     //I think i have a good start.  if you could please finish it, that would be great im getting tired.
-    return moneyAt67;
+    return youHave_YearsAfterRetirement67;
   }
 }
