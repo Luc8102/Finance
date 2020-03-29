@@ -53,7 +53,10 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
+        jTextArea1.setMaximumSize(new java.awt.Dimension(164, 94));
+        jTextArea1.setMinimumSize(new java.awt.Dimension(164, 94));
         jScrollPane1.setViewportView(jTextArea1);
 
         jTextArea2.setColumns(20);
