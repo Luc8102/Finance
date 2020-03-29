@@ -1,10 +1,5 @@
 package Finance;
 
-
-<<<<<<< HEAD
-=======
-// import com.sun.corba.se.impl.ior.EncapsulationUtility;
->>>>>>> 80b63d3e42be3c684d9b25f16c6a509e846242de
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
