@@ -71,7 +71,7 @@ public class finance
     //I think i have a good start.  if you could please finish it, that would be great im getting tired.
     return youHave_YearsAfterRetirement67;
   }
-  public boolean goalmet(weeklyspending, expenses)
+  public boolean goalmet(int weeklyspending, int expenses)
   {
     if(weeklyspending<=expenses/52)
     {
