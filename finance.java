@@ -1,3 +1,6 @@
+package Finance;
+
+
 import java.util.Scanner;
 
 public class finance
