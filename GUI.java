@@ -19,19 +19,14 @@ import javax.swing.JTextArea;
  */
 public class GUI extends javax.swing.JFrame {
 
-   // GUIController controller;
     BufferedOutputStream textOutput;
 
     public GUI() {
-        // new BufferedOutputStream();
 
         initComponents();
         PrintStream printStream = new PrintStream(new CustomOutputStream(jTextArea1));
         System.setOut(new PrintStream(printStream));
-       // controller = new GUIController(printStream);
-        
-        
-        
+
         //(new finance()).qna();
     }
 
@@ -179,7 +174,7 @@ public class GUI extends javax.swing.JFrame {
         });
     }
 
-     public void checkInput(InputStream input) throws IOException {
+    public void checkInput(InputStream input) throws IOException {
         Scanner sc = new Scanner(input);
         String text = "";
         while (sc.hasNext()) {
@@ -191,8 +186,7 @@ public class GUI extends javax.swing.JFrame {
     public void writeOutput(String text) throws UnsupportedEncodingException, IOException {
         System.out.println(text);
     }
-    
-    
+
     class CustomOutputStream extends OutputStream {
 
         private JTextArea textArea;
